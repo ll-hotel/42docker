@@ -30,6 +30,10 @@ COPY conf/.local.tar.gz .
 RUN tar xzf .local.tar.gz; \
 	rm .local.tar.gz;
 
+COPY conf/gitconfig.sh gitconfig.sh
+RUN bash gitconfig.sh; rm gitconfig.sh;
+COPY conf/zshrc .zshrc
+
 WORKDIR $HOME
 RUN chown $USER $HOME;
 
