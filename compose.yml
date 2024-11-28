@@ -1,0 +1,13 @@
+services:
+  42docker:
+    build: .
+    container_name: 42docker
+    volumes:
+      - target:/home/ll-hotel/.local
+    entrypoint: "/bin/zsh"
+    command: "-c 'sleep infinity'"
+
+volumes:
+  target:
+    external:
+      true
