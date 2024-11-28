@@ -16,15 +16,19 @@ COPY conf/zsh/install-omz.sh .
 RUN bash install-omz.sh; \
 	rm install-omz.sh;
 
-COPY conf/ssh/.ssh.tar .
-RUN tar xf .ssh.tar; \
-	rm .ssh.tar;
+COPY conf/ssh/.ssh.tar.gz .
+RUN tar xzf .ssh.tar.gz; \
+	rm .ssh.tar.gz;
 
-RUN mkdir .config/ .local/;
-COPY conf/neovim/nvim.tar .config/
+RUN mkdir .config/;
+COPY conf/neovim/nvim.tar.gz .config/
 RUN cd .config/; \
-	tar xf nvim.tar; \
-	rm nvim.tar;
+	tar xzf nvim.tar.gz; \
+	rm nvim.tar.gz;
+
+COPY conf/.local.tar.gz .
+RUN tar xzf .local.tar.gz; \
+	rm .local.tar.gz;
 
 WORKDIR $HOME
 RUN chown $USER $HOME;
